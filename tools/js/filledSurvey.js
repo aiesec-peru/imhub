@@ -1,4 +1,4 @@
-var app = angular.module('filledsurvey_ogx', []);
+var app = angular.module('filledsurvey', []);
 
 app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 	$scope.go = function() {
