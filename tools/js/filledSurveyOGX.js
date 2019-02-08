@@ -1,4 +1,4 @@
-var app = angular.module('finishedsurvey_ogx', []);
+var app = angular.module('filledsurvey_ogx', []);
 
 app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 	$scope.go = function() {
@@ -74,7 +74,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 	    			success(function(res) {
 						for (var j =  0; j <= res.data.length - 1; j++) {
 							var lc;
-							if(programa == '1' || programa == '2'){
+							if(programa == '1' || programa == '2' || programa == '3'){
 								lc = res.data[j].person.home_lc.name; //SOLO PARA oGX
 							}else{
 								lc = res.data[j].opportunity.office.name; //SOLO PARA iCX
