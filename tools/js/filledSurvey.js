@@ -35,23 +35,22 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 
 		//oGV
 		if(programa == '1'){
-			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200'
-		}
-		//oGE
+			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200';
+		}//oGE
 		else if(programa == '2'){
-			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200'
+			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200';
 		}//oGT
 		else if(programa == '3'){
-			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200'
+			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
 		}//iGV
 		else if(programa == '4'){
-			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200'
+			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200';
 		}//iGE
 		else if(programa == '5'){
-			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200'
+			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200';
 		}//iGT
 		else if(programa == '6'){
-			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200'
+			options.filters = '&filters[standards_specific]=filled_all&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
 		}
 
 		var people_expa = [];
