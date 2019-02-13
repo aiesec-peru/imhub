@@ -31,7 +31,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 		var options = {
 			uri_base: 'https://gis-api.aiesec.org/v2/',
 			uri_point: 'people.json?access_token=',		
-			filters: '&filters%5Bregistered%5Bfrom%5D%5D=' + start_date + '&filters%5Bregistered%5Bto%5D%5D=' + end_date + '&filters%5Bstatuses%5D%5B%5D=open&per_page=50',
+			filters: '&filters[registered_from]%5Bfrom%5D=' + start_date + '&filters[registered_to]%5Bfrom%5D=' + end_date ,
 			sub_filter: '&page='
 		};		
 
@@ -55,7 +55,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 	    			success(function(res) {
 						for (var j =  0; j <= res.data.length - 1; j++) {
 console.log(res.data[j]);
-							people_expa.push({
+								people_expa.push({
 								"name": res.data[j].first_name === null ? '':res.data[j].first_name,
 								"last_name": res.data[j].last_name === null ? '': res.data[j].last_name,
 								"email": res.data[j].email === null ? '':res.data[j].email,
@@ -65,7 +65,7 @@ console.log(res.data[j]);
 								"phone": res.data[j].phone === null ? '':res.data[j].phone,
 								"expa_link": res.data[j].id === null ? '': 'https://experience.aiesec.org/#/people/' + res.data[j].id,
 								"status": 'open',
-								"referral": res.data[j].referral_type=== null ? '' : res.data[j].referral_type	
+								"product": res.data[j].programmes.short_name
 							});
 						};			
 
