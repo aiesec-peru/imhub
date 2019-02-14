@@ -52,6 +52,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 		else if(programa == '6'){
 			options.filters = '&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
 		}
+
 		var people_expa = [];
 
 		$http.get(options.uri_base + options.uri_point + access_token + options.filters).
@@ -71,11 +72,11 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 				$http.get(options.uri_base + options.uri_point + access_token + options.filters + options.sub_filter + (i+1) ).
 	    			success(function(res) {
 						for (var j =  0; j <= res.data.length - 1; j++) {
-							var lc;
-							/*if(programa == '1' || programa == '2'|| programa == '3'){
-								lc = res.data[j].person.home_lc.name; //SOLO PARA oGX
+							/*var host_lc;
+							if(programa == '1' || programa == '2'|| programa == '3'){
+								host_lc = res.data[j].person.home_lc.name; //SOLO PARA oGX
 							}else{
-								lc = res.data[j].opportunity.office.name; //SOLO PARA iCX
+								host_lc = res.data[j].opportunity.office.name; //SOLO PARA iCX
 							}*/
 
 							people_expa.push({
@@ -83,10 +84,10 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 								"name": res.data[j].person.first_name === null ? '' : res.data[j].person.first_name ,
 								"last_name": res.data[j].person.last_name === null ? '' : res.data[j].person.last_name,
 								"email": res.data[j].person.email === null ? '':res.data[j].person.email,
-								"home_lc": res.data[j].person.home_lc.name,
 								"tn_id": res.data[j].opportunity.id === null ? '' : res.data[j].opportunity.id,
 								"tn_name": res.data[j].opportunity.title === null ? '' : res.data[j].opportunity.title,
-								"host_lc": res.data[j].opportunity.office.name,
+								"home_lc": res.data[j].person.home_lc.name === null ? '' : res.data[j].person.home_lc.name,
+								"host_lc": res.data[j].opportunity.office.name === null ? '': res.data[j].opportunity.office.name,
 								//"country": res.data[j].opportunity.office === null ? '' : res.data[j].opportunity.office.name,
 								"expa_link": 'https://experience.aiesec.org/#/people/' + res.data[j].person.id,
 								"status": res.data[j].status === null ? '' : res.data[j].status
