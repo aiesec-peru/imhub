@@ -28,7 +28,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 		//Por defecto oGV
 		var options = {
 			uri_base: 'https://gis-api.aiesec.org/v2/',
-			uri_point: 'applications.json?access_token=',		
+			uri_point: 'applications?access_token=',		
 			filters: '',
 			sub_filter: '&page='
 		};		
@@ -77,7 +77,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 								lc = res.data[j].person.home_lc.name; //SOLO PARA oGX
 							}else{
 								lc = res.data[j].opportunity.office.name; //SOLO PARA iCX									
-							}
+							}	
 
 							people_expa.push({
 								//"name": res.data[j].first_name,
