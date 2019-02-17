@@ -1,4 +1,4 @@
-var app = angular.module('aplications', []);
+var app = angular.module('completed', []);
 
 app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 	$scope.go = function() {
@@ -7,7 +7,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 		var end_date = document.getElementById("fecha_out").value;
 		var programa = document.getElementById("programa").value;
 
-	
+
 		if(!start_date && !end_date){
 			start_date = '2017-07-01'; //AÑO-MES-DÍA
 			var today = new Date();
@@ -17,7 +17,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 
 			if(dd<10) {
 	    		dd = '0' + dd
-			} 
+			}
 
 			if(mm<10) {
 	    		mm = '0' + mm
@@ -28,37 +28,36 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 		//Por defecto oGV
 		var options = {
 			uri_base: 'https://gis-api.aiesec.org/v2/',
-			uri_point: 'applications.json?access_token=',		
+			uri_point: 'applications.json?access_token=',
 			filters: '',
 			sub_filter: '&page='
-		};		
-
+		};
+		echo:
 		//oGV
 		if(programa == '1'){
-			options.filters = '&filters[created_at]%5Bfrom%5D=' + start_date + '&filters[created_at]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200';
+			options.filters = '&filters[status]=completed&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200';
 		}//oGE
 		else if(programa == '2'){
-			options.filters = '&filters[created_at]%5Bfrom%5D=' + start_date + '&filters[created_at]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200';
+			options.filters = '&filters[status]=completed&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200';
 		}//oGT
 		else if(programa == '3'){
-			options.filters = '&filters[created_at]%5Bfrom%5D=' + start_date + '&filters[created_at]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
+			options.filters = '&filters[status]=completed&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[person_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
 		}//iGV
 		else if(programa == '4'){
-			options.filters = '&filters[created_at]%5Bfrom%5D=' + start_date + '&filters[created_at]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200';
+			options.filters = '&filters[status]=completed&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=1&per_page=200';
 		}//iGE
 		else if(programa == '5'){
-			options.filters = '&filters[created_at]%5Bfrom%5D=' + start_date + '&filters[created_at]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200';
+			options.filters = '&filters[status]=completed&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=5&per_page=200';
 		}//iGT
 		else if(programa == '6'){
-			options.filters = '&filters[created_at]%5Bfrom%5D=' + start_date + '&filters[created_at]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
+			options.filters = '&filters[status]=completed&filters[experience_end_date]%5Bfrom%5D=' + start_date + '&filters[experience_end_date]%5Bto%5D=' + end_date + '&&filters[opportunity_committee]=1553&filters%5Bprogrammes%5D%5B%5D=2&per_page=200';
 		}
-
 		var people_expa = [];
 
 		$http.get(options.uri_base + options.uri_point + access_token + options.filters).
         		success(
         			function(res) {
-        				add(res.paging.total_pages);        	
+        				add(res.paging.total_pages);
         			}
         		).
         		error(
@@ -76,7 +75,7 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 							/*if(programa == '1' || programa == '2'|| programa == '3'){
 								lc = res.data[j].person.home_lc.name; //SOLO PARA oGX
 							}else{
-								lc = res.data[j].opportunity.office.name; //SOLO PARA iCX									
+								lc = res.data[j].opportunity.office.name; //SOLO PARA iCX
 							}*/
 
 							people_expa.push({
@@ -84,16 +83,15 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 								"name": res.data[j].person.first_name === null ? '' : res.data[j].person.first_name ,
 								"last_name": res.data[j].person.last_name === null ? '' : res.data[j].person.last_name,
 								"email": res.data[j].person.email === null ? '':res.data[j].person.email,
-								"home_lc": res.data[j].person.home_lc.name === null ? '' : res.data[j].person.home_lc.name,								
+								"home_lc": res.data[j].person.home_lc.name,
 								"tn_id": res.data[j].opportunity.id === null ? '' : res.data[j].opportunity.id,
 								"tn_name": res.data[j].opportunity.title === null ? '' : res.data[j].opportunity.title,
 								"host_lc": res.data[j].opportunity.office.name,
-								//"lc": lc === null ? '': lc,
-							//	"country": res.data[j].opportunity.office === null ? '' : res.data[j].opportunity.office.name,
+								//"country": res.data[j].opportunity.office === null ? '' : res.data[j].opportunity.office.name,
 								"expa_link": 'https://experience.aiesec.org/#/people/' + res.data[j].person.id,
 								"status": res.data[j].status === null ? '' : res.data[j].status
 							});
-						};			
+						};
 
 						$scope.people = people_expa;
 	    			}).
