@@ -72,23 +72,22 @@ app.controller('Analytics', ['$scope', '$http', function ($scope,$http) {
 				$http.get(options.uri_base + options.uri_point + access_token + options.filters + options.sub_filter + (i+1) ).
 	    			success(function(res) {
 						for (var j =  0; j <= res.data.length - 1; j++) {
-							var lc;
-							if(programa == '1' || programa == '2' || programa == '3'){
+							/*if(programa == '1' || programa == '2'|| programa == '3'){
 								lc = res.data[j].person.home_lc.name; //SOLO PARA oGX
 							}else{
 								lc = res.data[j].opportunity.office.name; //SOLO PARA iCX
-							}
+							}*/
 
 							people_expa.push({
 								//"name": res.data[j].first_name,
 								"name": res.data[j].person.first_name === null ? '' : res.data[j].person.first_name ,
 								"last_name": res.data[j].person.last_name === null ? '' : res.data[j].person.last_name,
 								"email": res.data[j].person.email === null ? '':res.data[j].person.email,
-								"home_lc": res.data[j].person.home_lc.name === null ? '' : res.data[j].person.home_lc.name,
+								"home_lc": res.data[j].person.home_lc.name,
 								"tn_id": res.data[j].opportunity.id === null ? '' : res.data[j].opportunity.id,
 								"tn_name": res.data[j].opportunity.title === null ? '' : res.data[j].opportunity.title,
-								"lc": lc === null ? '': lc,
-								"country": res.data[j].opportunity.office === null ? '' : res.data[j].opportunity.office.name,
+								"host_lc": res.data[j].opportunity.office.name,
+								//"country": res.data[j].opportunity.office === null ? '' : res.data[j].opportunity.office.name,
 								"expa_link": 'https://experience.aiesec.org/#/people/' + res.data[j].person.id,
 								"status": res.data[j].status === null ? '' : res.data[j].status
 							});
